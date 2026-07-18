@@ -69,7 +69,7 @@ export function useNewsStore(user) {
         const cat = CAT_KEYS[category];
 
         const res = await fetch(
-            `http://localhost:5000/api/news?state=${encodeURIComponent(state)}&category=${encodeURIComponent(cat)}`
+            `${process.env.REACT_APP_GEMINI_API_KEY}/news?state=${encodeURIComponent(state)}&category=${encodeURIComponent(cat)}`
         );
 
         if(!res.ok){
