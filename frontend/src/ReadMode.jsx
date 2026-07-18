@@ -7,8 +7,7 @@ export default function ReadMode({
 }) {
 console.log("FULL ITEM:");
 console.log(JSON.stringify(item, null, 2));
-  const articleDate = item.pubDate || item.isoDate || item.publishedAt || item.date;
-
+  
   const [fontSize, setFontSize]   = useState(17);
   const [scrollPct, setScrollPct] = useState(0);
   const [imgError, setImgError]   = useState(false);
@@ -39,13 +38,13 @@ console.log(JSON.stringify(data.items?.[0], null, 2));
 let cleanContent = data.content || "";
 
 // Remove ads, scripts, styles
-cleanContent = cleanContent
+cleanContent
   .replace(/<script[\s\S]*?<\/script>/gi, "")
   .replace(/<style[\s\S]*?<\/style>/gi, "")
   .replace(/<iframe[\s\S]*?<\/iframe>/gi, "");
 
 // Remove very small images/icons
-cleanContent = cleanContent.replace(
+cleanContent.replace(
   /<img[^>]*width=["']?[0-2]?\d["']?[^>]*>/gi,
   ""
 );
@@ -114,7 +113,6 @@ setArticleContent(
 
   // Check if content is actually useful (not just truncated "... [N chars]")
   const isTruncated = bodyText.endsWith("...]") || bodyText.endsWith("…") || bodyText.length < 120;
-  const hasFullContent = bodyText.length >= 300 && !isTruncated;
 
   // Thumbnail — try enclosure, then thumbnail field, then og image hint
   const thumbUrl = !imgError && (

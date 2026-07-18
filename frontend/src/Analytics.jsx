@@ -1,4 +1,3 @@
-import { CAT_KEYS, CAT_ICONS } from "./useNewsStore.js";
  
 export default function Analytics({ heatmapData, readHistory, darkMode }) {
   const c = {

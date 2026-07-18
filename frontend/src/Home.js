@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, useCallback, useMemo, Component } from "react";
+import { useState, useEffect, useCallback, useMemo, Component } from "react";
 import * as assetsModule from "./assets";
 import { useNewsStore, CAT_KEYS, CAT_ICONS, STATES } from "./useNewsStore.js";
 import ReadMode from "./ReadMode.jsx";
@@ -38,7 +38,7 @@ export default function Home({ user, onLogout }) {
   const [tab, setTab] = useState("apps");
   const [bmTab, setBmTab] = useState("apps");
 
-  const [appSearch, setAppSearch] = useState("");
+  const [appSearch] = useState("");
   const [artSearch, setArtSearch] = useState("");
   const [currentSlide, setCurrentSlide] = useState(0);
   
@@ -48,8 +48,6 @@ export default function Home({ user, onLogout }) {
   const store = useNewsStore(user);
 
   const totalReads = store.readHistory.length;
-  const favoriteCategory = store.heatmapData?.[0]?.cat || "general";
-  const streak = new Set(store.readHistory.map(r => new Date(r.readAt).toDateString())).size;
 
   const [summaries, setSummaries] = useState({});
   const [summarizingId, setSummarizingId] = useState(null);
@@ -68,14 +66,12 @@ export default function Home({ user, onLogout }) {
   const [kwInput, setKwInput] = useState("");
   const [alertTriggered, setAlertTriggered] = useState([]);
 
-  const [locationGranted, setLocationGranted] = useState(false);
+  const [ setLocationGranted] = useState(false);
   const [locationCity, setLocationCity] = useState(null);
   const [locationLoading, setLocationLoading] = useState(false);
   const [locationError, setLocationError] = useState(null);
   const [profileMenuOpen, setProfileMenuOpen] = useState(false);
 
-
-  const [langFilter, setLangFilter] = useState("All");
   const [voiceLang, setVoiceLang] = useState("en-IN");
   const [settingsOpen, setSettingsOpen] = useState(false);
 
@@ -605,7 +601,6 @@ const totalSlides = Math.ceil(filteredApps.length / appsPerSlide);
     [...new Set(store.allArticles.flatMap(a => a.title.split(/\s+/).filter(w => w.length > 5 && /^[A-Za-z]/.test(w))))].slice(0, 16),
     [store.allArticles]
   );
-  const trendingArticles = store.personalizedFeed.slice(0, 5);
 
   // ── PREMIUM DESIGN SYSTEM ──────────────────────────────────────────────────
   const dm = darkMode;

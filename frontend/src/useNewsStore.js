@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback, useRef } from "react";
+import { useState, useEffect, useCallback } from "react";
  
 export const CAT_KEYS = ["general", "sports", "technology", "politics", "entertainment", "business", "science", "health"];
 export const CAT_ICONS = ["🌐", "⚽", "💻", "🏛️", "🎬", "📈", "🔬", "🏥"];
@@ -17,9 +17,7 @@ export const SOURCES_MAP = {
 };
 const ITEMS_PER_PAGE = 10;
  
-function debounce(fn, ms) {
-  let t; return (...args) => { clearTimeout(t); t = setTimeout(() => fn(...args), ms); };
-}
+
  
 export function useNewsStore(user) {
   const uid = user?.email || "guest";
