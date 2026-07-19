@@ -25,7 +25,7 @@ console.log(JSON.stringify(item, null, 2));
     try {
       setLoading(true);
       const res = await fetch(
-        `${process.env.REACT_APP_GEMINI_API_KEY}/article?url=${encodeURIComponent(item.link)}`
+        `${process.env.REACT_APP_API_URL}/article?url=${encodeURIComponent(item.link)}`
       );
 
     const data = await res.json();

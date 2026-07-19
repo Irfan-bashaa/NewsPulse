@@ -800,7 +800,7 @@ btn: (bg, sm) => ({
     try {
 
         const res = await fetch(
-          `${process.env.REACT_APP_GEMINI_API_KEY}/article?url=${encodeURIComponent(item.link)}`
+          `${process.env.REACT_APP_API_URL}/article?url=${encodeURIComponent(item.link)}`
 );
 
         const data = await res.json();
